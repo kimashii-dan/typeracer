@@ -6,10 +6,8 @@ import ProgressBar from "../components/ProgressBar";
 import Text from "../components/Text";
 import Input from "../components/Input";
 const initial: string =
-  "Begin by copying your existing CSS code that you want to convert to Tailwind CSS. Make sure to include all the CSS rules you want to convert.";
+  "To create a blinking effect in CSS, simply adjust the opacity at different time frames, using keyframes and animation property in CSS.";
 const splitted = initial.split(" ").map((word) => [...word, " "]);
-console.log(splitted);
-console.log(splitted.flat());
 
 export default function Game() {
   const [input, setInput] = useState<string>("");
@@ -27,7 +25,8 @@ export default function Game() {
     let timer: number;
     if (isTyping && seconds > 0) {
       timer = setInterval(() => setSeconds((prev) => prev - 1), 1000);
-    } else if (seconds === 0) {
+    }
+    if (seconds === 0) {
       finish();
     }
     return () => clearInterval(timer);
@@ -117,7 +116,12 @@ export default function Game() {
         <ProgressBar progress={progress} />
 
         {/* text */}
-        <Text splitted={splitted} wordIndex={wordIndex} charIndex={charIndex} />
+        <Text
+          splitted={splitted}
+          wordIndex={wordIndex}
+          charIndex={charIndex}
+          isTyping={isTyping}
+        />
 
         {/* input */}
         <Input
